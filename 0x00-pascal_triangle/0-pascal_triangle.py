@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ Module to build pascal triangle"""
 
+
 def pascal_triangle(n):
-    """ Function to create a list of list of a 
+    """ Function to create a list of list of a
     pascal triangle given an integer n
     """
     pascal = []
