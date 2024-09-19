@@ -11,7 +11,7 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Initialize a DP array with a large value (inf) to represent unattainable amounts
+    # Initialize a DP array with a large value (inf) to
     dp = [float('inf')] * (total + 1)
 
     # Base case: It takes 0 coins to make total 0
@@ -20,7 +20,7 @@ def makeChange(coins, total):
     # Iterate over all coin values
     for coin in coins:
         for amount in range(coin, total + 1):
-            # Update the dp array for each amount by checking if we can use the current coin
+            # Update the dp array for each amount by checking
             dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
     # If dp[total] is still infinity, return -1 (total can't be met)
