@@ -10,18 +10,26 @@ def makeChange(coins, total):
     # Edge case: if total is 0 or less, return 0
     if total <= 0:
         return 0
-
-    # Initialize a DP array with a large value (inf) to
-    dp = [float('inf')] * (total + 1)
-
-    # Base case: It takes 0 coins to make total 0
-    dp[0] = 0
-
-    # Iterate over all coin values
+    # Sort the coins in decreasing order
+    coins.sort(reverse=True)
+    # Initialize the coin count to zero
+    coin_count = 0
+    # Iterate through each coin in the list of coins
     for coin in coins:
-        for amount in range(coin, total + 1):
-            # Update the dp array for each amount by checking
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
-
-    # If dp[total] is still infinity, return -1 (total can't be met)
-    return dp[total] if dp[total] != float('inf') else -1
+        # If the coin is greater than the remaining total, skip it
+        if coin > total:
+            continue
+        # Calculate the number of times the current coin can be used
+        count = total // coin
+        # Update the total by subtracting the value of the coins used
+        total -= count * coin
+        # Update the coin count by adding the number of coins used
+        coin_count += count
+        # If the total is now zero, we're done
+        if total == 0:
+            break
+    # If we couldn't make change for the total, return -1
+    if total > 0:
+        return -1
+    # Otherwise, return the coin count
+    return coin_count
